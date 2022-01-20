@@ -1,0 +1,62 @@
+{% extends 'frontend/base.html' %}
+{% load humanize %}
+{% block content %}
+{% load templatetags %}
+
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1>Order Confirmed</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div class="container">
+    <div class="my-5 alert alert-heading">
+        <h3 class="orange-text"> Your Order has been Confirmed! </h3>
+        <h4> sit back and relax, you''ll hear from us anytime from now. meanwhile check your email!' </h4>
+        <ul>
+
+        </ul>
+    </div>
+</div>
+
+<!-- more products -->
+<div class="more-products mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">	
+                    <h3><span class="orange-text">Want to Shop More!</span> Products</h3>
+                    <p> Check out our collection of related products </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for obj in products %}
+            {% if obj.slug != object_list.slug %}
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="{% url 'product-detail' obj.slug %}"><img src="{{ obj.image.url }}" alt=""></a>
+                    </div>
+                    <h3>{{ obj.name }}</h3>
+                    <p class="product-price"><span>Per Kg</span> {{  obj.price|intcomma }} </p>
+                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- end more products -->
+
+{% endblock %}

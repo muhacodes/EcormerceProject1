@@ -1,0 +1,24 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1>Welcome to LQ Collection</h1> <br>
+                    <p> Where Fashion meets Modesty </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+{% include 'frontend/snippets/homepageproduct.html' %}
+
+{% include 'frontend/snippets/features.html' %}
+
+{% endblock %}

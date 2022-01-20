@@ -1,0 +1,52 @@
+{% extends 'backend/base.html' %}
+
+{% block content %}
+<div class="page-header">
+    <h3 class="page-title"> Category </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'backend:index' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> category </li>
+      </ol>
+    </nav>
+</div>
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+    <div class="card-header">
+        <a href="{% url 'backend:testimonial-add' %}" class="btn btn-dark"> <i class="fas fa-camera"></i> New Entry </a>
+    </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="color: white"> Username </th>
+                <!-- <th> Products </th> -->
+                <th style="color: white"> Message </th>
+
+                <th style="color: white"> Action </th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for obj in object_list %}
+              <tr>
+                <td> {{ obj.username}} </td>
+                <td> {{ obj.message }} </td>
+                <td> 
+                    <a href="{% url 'backend:testimonial-edit' obj.id %}" class="btn btn-sm btn-dark"> Edit </a> 
+                    <a href="{% url 'backend:testimonial-delete' obj.id %}" class="btn btn-sm btn-danger"> Delete </a> 
+                </td>
+              </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
