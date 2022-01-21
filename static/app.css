@@ -1,21 +1,4 @@
-.field-label {
-  font-weight: normal;
-}
-.field-helptext {
-  font-size: 12px;
-}
-.field-error {
-  font-size: 14px;
-  color: red;
-}
-.field-required {
-  font-weight: bold;
-}
-.field-required:after {
-  content: " *";
-}
-
-
+/* 
 
 .form-group--number {
     display: inline-block;
@@ -94,4 +77,4 @@
       .form-group--number .form-control:-moz-placeholder {
         color: #000; }
       .form-group--number .form-control:-ms-input-placeholder {
-        color: #000; }
+        color: #000; } */
