@@ -1,4 +1,22 @@
-/* 
+/* checkout page fields */
+.checkout-section .field-label {
+  font-weight: normal;
+  /* color: green */
+}
+.checkout-section .field-helptext {
+  font-size: 12px;
+}
+.checkout-section .field-error {
+  font-size: 14px;
+  color: red;
+}
+.checkout-section .field-required {
+  font-weight: bold;
+}
+.checkout-section .field-required:after {
+  content: " *";
+}
+
 
 .form-group--number {
     display: inline-block;
@@ -77,4 +95,4 @@
       .form-group--number .form-control:-moz-placeholder {
         color: #000; }
       .form-group--number .form-control:-ms-input-placeholder {
-        color: #000; } */
+        color: #000; }
