@@ -14,11 +14,16 @@ def checkout(request):
     addressforms = addressForm(request.POST or None)
     customerForm = customerAdd(request.POST or None)
     if request.method =='POST':
+
+        #  some variable names
+        name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone_number']
         
         customerobj = customer.objects.create(
-            email = request.POST['email'],
-            name = request.POST['name'],
-            phone_number = request.POST['phone_number'],
+            email = email,
+            name = name,
+            phone_number = phone
         )
         customerobj.save()
         customerinstance = customer.objects.get(id=customerobj.id)
@@ -36,7 +41,7 @@ def checkout(request):
         for key, value in cart.items():
             id = value['product_id']
             product_instance = Product.objects.get(id=id)
-            mylist.append(product_instance.id)
+            
             order_item = OrderItem.objects.create(
                 product = product_instance,
                 quantity= value['quantity'],
@@ -44,6 +49,7 @@ def checkout(request):
             
             )
             order_item.save()
+            mylist.append(order_item.id)
         
         # myorder = Order(
         #         message= request.POST['notes'],
@@ -58,8 +64,11 @@ def checkout(request):
            myorder.item.add(OrderItem.objects.get(id=x))
          
         print(mylist)
-        cart = Cart(request)
-        cart.clear()
+        # ob = OrderItem.objects.get(id=1)
+        # return HttpResponse(mylist)
+        # cart = Cart(request)
+        # cart.clear()
+        
         return HttpResponseRedirect(reverse('confirm'))
         
         return HttpResponse("end point reached")
