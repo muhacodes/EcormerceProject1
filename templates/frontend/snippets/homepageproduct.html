@@ -74,7 +74,8 @@
                         <a href="{% url 'product-detail' obj.slug %}"><img src="{{ obj.image.url }}" alt=""></a>
                     </div>
                     <h3> {{ obj.name }} </h3>
-                    <p class="product-price"><span>Per item</span> {{ obj.price|intcomma }} </p>
+                    <p class="product-price"> {{ obj.price|intcomma }}  </p>
+                    <p><span>Per item</span>  </p>
                     <a href="{% url 'product-detail' obj.slug %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>

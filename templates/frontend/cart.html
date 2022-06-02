@@ -20,6 +20,7 @@
 <!-- cart -->
 <div class="cart-section mt-150 mb-150">
     <div class="container">
+        {% if request.session.cart %}
         <div class="row">
             <div class="col-lg-8 col-md-12">
                 <div class="cart-table-wrap">
@@ -35,8 +36,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             {% for key,value in request.session.cart.items %}
-                            {{ value }}
+                           
                             <tr class="table-body-row">
                                 <td class="product-remove"><a onclick="return false;" class="clear-cart" data-id="{{ value.product_id }}" href="#"><i class="far fa-window-close"></i></a></td>
                                 <td class="product-image"><img  src="{{ value.image }}" alt=""></td>
@@ -100,6 +102,19 @@
                 </div>
             </div>
         </div>
+        {% else %}
+        <div id="confirmation_wrapper" class="container">
+            <div class="text-center">
+                <i class="far text-danger  fa-4x fa-dizzy"></i>
+            </div>
+
+            <h2 class="text-center text-warning"> Whoops !! </h2>
+            <p class="text-center"> Looks like your cart is empty!! </p>
+            <div class="text-center">
+                <a href="{% url 'home' %}" class="btn btn-warning btn-lg text-white text-center"> Go back Home </a>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 <!-- end cart -->

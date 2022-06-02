@@ -1,3 +1,20 @@
+*{
+  /* border: 1px solid red; */
+}
+/* confirmation page */
+#confirmation_wrapper{
+  border: 1px solid rgb(233, 224, 224);
+  margin: 100px auto;
+  padding: 50px;
+  background-color: whitesmoke;
+}
+#confirmation_wrapper i{
+  margin: 0px auto;
+}
+
+
+/* confirmation page */
+
 /* checkout page fields */
 .checkout-section .field-label {
   font-weight: normal;

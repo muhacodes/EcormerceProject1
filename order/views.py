@@ -68,6 +68,7 @@ def checkout(request):
         # return HttpResponse(mylist)
         # cart = Cart(request)
         # cart.clear()
+        del request.session['cart']
         
         return HttpResponseRedirect(reverse('confirm'))
         
