@@ -2,6 +2,9 @@ from django.db import models
 from product.models import Product
 from account.models import User
 from account.models import customer
+from django.utils.crypto import get_random_string
+from django.db.models.signals import pre_save
+from django.utils.crypto import get_random_string
 # Create your models here.
 
 class OrderItem(models.Model):
@@ -17,6 +20,7 @@ class OrderItem(models.Model):
 
 class Order(models.Model):
     item                = models.ManyToManyField(OrderItem)
+    order_id            = models.CharField(max_length=10, blank=True)
     customer            = models.ForeignKey(customer, related_name='order_customer', on_delete=models.CASCADE, null=True)
     address             = models.ForeignKey("order.Address", related_name='order_address', on_delete=models.CASCADE, blank=True, null=True)
     message             = models.TextField(max_length=1000, null=True, blank=True)
@@ -41,3 +45,11 @@ class Address(models.Model):
 
     def __str__(self):
         return self.address
+    
+
+def pre_save_create_order_id(sender, instance, *args, **kwargs):
+    if not instance.order_id:
+        instance.order_id = get_random_string(length=5)
+
+
+pre_save.connect(pre_save_create_order_id, sender=Order)

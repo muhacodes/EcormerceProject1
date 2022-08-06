@@ -28,9 +28,15 @@
             </div>
             <div class="col-md-7">
                 <div class="single-product-content">
-                    <h3> {{ object_list.name }} </h3>
-                    <p class="single-product-pricing"><span> {{ object_list.about }} </span> {{ object_list.price|intcomma }} UGX </p>
-                    <p> {{ object_list.description }} </p>
+                    <h3> pro name {{ object_list.name }} </h3>
+                    <p class="single-product-pricing"><span> about - {{ object_list.about }} </span> {{ object_list.price|intcomma }} UGX </p>
+                    <p class="text-danger"> {{ object_list.quantity }}  left
+                         </p>
+                    <p> {% if object_list.description %} 
+                        {{ object_list.description }}
+                        {% endif %}
+
+                    </p>
                     <div class="single-product-form">
                         <br>
                         <a href="{% url 'cart:add' object_list.id %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>

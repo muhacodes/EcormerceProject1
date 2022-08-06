@@ -21,9 +21,8 @@ class Product(models.Model):
     name                        = models.CharField(max_length=100)
     description                 = models.CharField(max_length=5000, null=True, blank=True)
     about                       = models.CharField(max_length=200, null=True, blank=True)
+    quantity                    = models.SmallIntegerField(null=True, blank=True)
     availability                = models.BooleanField(default=True)
-    # MOQ                         = models.SmallIntegerField( verbose_name="Minimum Order Quantity",null=True, blank=True)
-    
     price			            = models.IntegerField()
     discount			        = models.DecimalField(max_digits=7, decimal_places=0, null=True, blank=True)
     image                       = models.ImageField(upload_to='media/product/images', null=True, blank=True)

@@ -25,6 +25,7 @@
             <thead>
               <tr>
                 <th style="color: white"> Date </th>
+                <th> Order Id </th> 
                 <th style="color: white"> Items </th>
 
 
@@ -43,6 +44,7 @@
                 
               <tr>
                 <td> {{ obj.timestamp }} </td>
+                <td> {{ obj.order_id }} </td>
                 <td> 
                   {% for item in obj.item.all %}
                   <span> {{ item }} <br></span>
