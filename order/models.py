@@ -3,8 +3,11 @@ from product.models import Product
 from account.models import User
 from account.models import customer
 from django.utils.crypto import get_random_string
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.utils.crypto import get_random_string
+from django.template.loader import render_to_string, get_template
+from datetime import date, timedelta
+from django.core.mail import EmailMessage
 # Create your models here.
 
 class OrderItem(models.Model):
@@ -52,4 +55,47 @@ def pre_save_create_order_id(sender, instance, *args, **kwargs):
         instance.order_id = get_random_string(length=5)
 
 
+def SendConfirmationOrderMail(sender, instance, **kwargs):
+    current = date.today()
+
+    EstimatedDeliveryDate = current + timedelta(days=1)
+    ctx = {
+        'Name': instance.customer.name,
+        'order_id' :instance.order_id,
+        'deliveryDate' :EstimatedDeliveryDate
+        
+    }
+    message = get_template('mail.html').render(ctx)
+    msg = EmailMessage(
+        'Order Confirmation',
+        message,
+        'app@lqcollectionstore.com',
+        [instance.customer.email],
+    )
+    msg.content_subtype ="html"# Main content is now text/html
+    msg.send()
+
+
+def SendConfirmationOrderMailToAdmin(sender, instance, **kwargs):
+    ctx = {
+        'Name': instance.customer.name,
+        'order_id' :instance.order_id,
+        'phone' : instance.customer.phone_number,
+    }
+    message = get_template('confirm.html').render(ctx)
+    msg = EmailMessage(
+        'New Order',
+        message,
+        'app@lqcollectionstore.com',
+        ['Layla.qalombi26@gmail.com', 'muha.oq3@gmail.com'],
+    )
+    msg.content_subtype ="html"# Main content is now text/html
+    msg.send()
+
+
+
 pre_save.connect(pre_save_create_order_id, sender=Order)
+
+post_save.connect(SendConfirmationOrderMail, sender=Order)
+
+post_save.connect(SendConfirmationOrderMailToAdmin, sender=Order)

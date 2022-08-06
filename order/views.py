@@ -92,24 +92,24 @@ def checkout(request):
 
         # send_mail( subject, message, email_from, recipient_list )
         
-        current = date.today()
+        # current = date.today()
 
-        EstimatedDeliveryDate = current + timedelta(days=1)
-        ctx = {
-        'Name': request.POST['name'],
-        'order_id' :myorder.order_id,
-        'deliveryDate' :EstimatedDeliveryDate
+        # EstimatedDeliveryDate = current + timedelta(days=1)
+        # ctx = {
+        # 'Name': request.POST['name'],
+        # 'order_id' :myorder.order_id,
+        # 'deliveryDate' :EstimatedDeliveryDate
         
-        }
-        message = get_template('mail.html').render(ctx)
-        msg = EmailMessage(
-            'Order Confirmation',
-            message,
-            'muhacodes@gmail.com',
-            [request.POST['email']],
-        )
-        msg.content_subtype ="html"# Main content is now text/html
-        msg.send()
+        # }
+        # # message = get_template('mail.html').render(ctx)
+        # # msg = EmailMessage(
+        # #     'Order Confirmation',
+        # #     message,
+        # #     'app@lqcollectionstore.com',
+        # #     [request.POST['email']],
+        # # )
+        # # msg.content_subtype ="html"# Main content is now text/html
+        # # msg.send()
         return HttpResponseRedirect(reverse('confirm'))
         
         return HttpResponse("end point reached")

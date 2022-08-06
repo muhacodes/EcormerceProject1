@@ -13,7 +13,7 @@ def home(request):
 
     # cat = Product.objects.all()
     context = {
-        'product' : Product.objects.all(),
+        'product' : Product.objects.filter(quantity__gte=0),
         'category' : Category.objects.all(),
     }
 
